@@ -25,6 +25,7 @@ namespace PlatformService
         {
 
             Console.WriteLine($"--> Using SqlServer DB");
+            Console.WriteLine($"--> Using Connection string {Configuration.GetConnectionString("PlatformsConn")}");
             services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("PlatformsConn")));
 
             services.AddScoped<IPlatformRepo, PlatformRepo>();
