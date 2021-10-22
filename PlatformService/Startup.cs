@@ -25,8 +25,14 @@ namespace PlatformService
         {
 
             Console.WriteLine($"--> Using SqlServer DB");
-            Console.WriteLine($"--> Using Connection string {Configuration.GetConnectionString("PlatformsConn")}");
-            services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("PlatformsConn")));
+
+            var connectionString = $"Server={Configuration["DBServerName"]}" +
+                                    $";Initial Catalog={Configuration["DBName"]}" +
+                                    $";User ID={Configuration["DBUserID"]}" +
+                                    $";Password={Configuration["DBPassword"]};";
+
+            Console.WriteLine($"--> Using Connection string {connectionString}");
+            services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(connectionString));
 
             services.AddScoped<IPlatformRepo, PlatformRepo>();
             services.AddControllers();

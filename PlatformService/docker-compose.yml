@@ -10,5 +10,10 @@ services:
       - "1433:1433"
   docker-compose:
     build: .
+    environment:
+      DBServerName: "ms-sql-server, 1433"
+      DBName: "platformsdb"
+      DBUserID: "sa"
+      DBPassword: "pa55w0rd!"
     ports:
       - "8080:80"
