@@ -8,6 +8,8 @@ services:
       MSSQL_PID: "Express"
     ports:
       - "1433:1433"
+    volumes:
+      - sql-data-volume:/var/opt/mssql/data 
   docker-compose:
     build: .
     environment:
@@ -17,3 +19,6 @@ services:
       DBPassword: "pa55w0rd!"
     ports:
       - "8080:80"
+volumes:
+  sql-data-volume:
+    driver: local
