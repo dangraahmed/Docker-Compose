@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
 # set the working directory
 WORKDIR /app
 
-# copy csproj file to know dependency and restore it.
+# copy csproj file (from host to inside container) to know dependency and restore it.
 COPY *.csproj ./
 RUN dotnet restore
 

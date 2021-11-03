@@ -1,0 +1,13 @@
+docker-compose -f docker-compose.yml up -d
+docker-compose -f docker-compose.yml down
+
+docker run -d ^
+-p 1433:1433 ^
+-e ACCEPT_EULA=Y ^
+-e SA_PASSWORD=pa55w0rd! ^
+-e MSSQL_PID=Express ^
+--name ms-sql-server ^
+--net ahmed-network ^
+mcr.microsoft.com/mssql/server:2017-latest
+
+dotnet run --DBServerName localhost,1433 --DBName ahmedDB --DBUserID sa --DBPassword pa55w0rd!
